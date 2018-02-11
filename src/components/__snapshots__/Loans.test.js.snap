@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loans component renders a snapshot properly 1`] = `
+<div>
+  <div
+    className="table-responsive"
+  >
+    <table
+      className="table table-bordered table-condensed table-hover"
+    >
+      <thead>
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            Title
+          </th>
+          <th>
+            Tranche
+          </th>
+          <th>
+            Available
+          </th>
+          <th>
+            Annualised Return
+          </th>
+          <th>
+            Term remaining
+          </th>
+          <th>
+            Ltv
+          </th>
+          <th>
+            Amount
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            1
+          </td>
+          <td>
+            Voluptate et sed tempora qui quisquam.
+          </td>
+          <td>
+            A
+          </td>
+          <td>
+            11,959
+          </td>
+          <td>
+            8.60
+          </td>
+          <td>
+            864000
+          </td>
+          <td>
+            48.80
+          </td>
+          <td>
+            85,754
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            5
+          </td>
+          <td>
+            Consectetur ipsam qui magnam minus dolore ut fugit.
+          </td>
+          <td>
+            B
+          </td>
+          <td>
+            31,405
+          </td>
+          <td>
+            7.10
+          </td>
+          <td>
+            1620000
+          </td>
+          <td>
+            48.80
+          </td>
+          <td>
+            85,754
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            12
+          </td>
+          <td>
+            Dolores repudiandae ut voluptas unde laborum quaerat et sapiente.
+          </td>
+          <td>
+            C
+          </td>
+          <td>
+            12,359
+          </td>
+          <td>
+            4.80
+          </td>
+          <td>
+            879000
+          </td>
+          <td>
+            48.80
+          </td>
+          <td>
+            85,754
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
