@@ -42,3 +42,18 @@ test('Ensure the invest input field updates the state when the data is entered i
     }})
     expect(wrapper.instance().state.investment).toBe(50)
 })
+
+test('Ensure the modal is closed when the invest button is called', ()=> {
+    const AppComponent = mount(<App/>)
+    const spy = jest.spyOn(AppComponent.instance(), 'processInvestment');
+    AppComponent.instance().setState({isModalOpen: true})
+
+    const loan = loans[0]
+    const show = true
+    const wrapper = mount(<InvestForm selectedLoan={loan} processInvestment={spy} show={show}/>)
+    const investButton = wrapper.find('#investButton').first()
+
+    investButton.simulate('click')
+    expect(investButton.length).toBe(1)
+    expect(AppComponent.instance().state.isModalOpen).toBe(false)
+})

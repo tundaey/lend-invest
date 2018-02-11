@@ -65,6 +65,22 @@ class App extends Component {
     this.setState({isModalOpen: true, selectedLoan: loan})
   }
 
+  processInvestment = (loan, investment)=>{
+    const available = parseFloat(loan.available.replace(/,/g, ''));
+    const newAvailableAmount  = available - investment
+    loan['available']= newAvailableAmount.toLocaleString('en')
+    const newLoans = this.state.loans.map((l)=> {
+      if(l.id === loan.id){
+        loan['invested'] = true
+        return loan
+      }
+      return l
+    })
+    
+    this.setState({isModalOpen: false, loans: newLoans})
+  }
+
+
 }
 
 export default App;
