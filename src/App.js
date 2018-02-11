@@ -4,6 +4,7 @@ import './App.css';
 import Loans from './components/Loans'
 import {loans} from './current-loans.json'
 import NavBar from './components/Navbar'
+import InvestForm from './components/InvestForm'
 
 class App extends Component {
   constructor(){
@@ -39,12 +40,31 @@ class App extends Component {
                 isModalOpen={this.state.isModalOpen} 
                 closeModal={this.closeModal} 
                 loans={this.state.loans}/>
+
+              {this.state.isModalOpen 
+                ? <InvestForm 
+                closeModal={this.closeModal}
+                processInvestment={this.processInvestment}
+                selectedLoan={this.state.selectedLoan} 
+                show={this.state.isModalOpen}/>
+              : null}
             </div>
           </div>
         </div>
       </div>
     );
   }
+
+  closeModal = (event)=>{
+    event.preventDefault()
+    this.setState({isModalOpen: false, selectedLoan: {}})
+  }
+
+  openModal = (event, loan)=>{
+    event.preventDefault()
+    this.setState({isModalOpen: true, selectedLoan: loan})
+  }
+
 }
 
 export default App;

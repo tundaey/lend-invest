@@ -36,6 +36,11 @@ class InvestForm extends Component {
             </Modal>
         )
     }
+
+    updateForm = (event)=> {
+        const investment = event.target.value
+        this.setState({investment: investment})
+    }
 }
 
 export default InvestForm
