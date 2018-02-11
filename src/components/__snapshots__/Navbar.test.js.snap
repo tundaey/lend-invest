@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loans component renders a snapshot properly 1`] = `
+<nav
+  className="navbar navbar-inverse"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="navbar-header"
+    >
+      <span
+        className="navbar-brand"
+      >
+        Lend-Invest
+      </span>
+    </div>
+  </div>
+</nav>
+`;
