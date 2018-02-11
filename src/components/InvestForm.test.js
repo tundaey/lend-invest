@@ -57,3 +57,53 @@ test('Ensure the modal is closed when the invest button is called', ()=> {
     expect(investButton.length).toBe(1)
     expect(AppComponent.instance().state.isModalOpen).toBe(false)
 })
+
+test('Ensure the available amount for the loan selected decreases by the right amount when invest button is clicked', ()=> {
+    const AppComponent = mount(<App/>)
+    const spy = jest.spyOn(AppComponent.instance(), 'processInvestment');
+    AppComponent.instance().setState({isModalOpen: true})
+    const currentAvailable = AppComponent.instance().state.loans[0].available
+
+    const show = true
+    const loan = loans[0]
+    const wrapper = mount(<InvestForm selectedLoan={loan} processInvestment={spy} show={show}/>)
+
+    const investInputField = wrapper.find(FormControl)
+    const investButton = wrapper.find('#investButton').first()
+    investInputField.simulate('change', {target: {
+       name: 'investment',
+       value: 50 
+    }})
+
+    investButton.simulate('click')
+
+    const selectedLoan = wrapper.props().selectedLoan
+    expect(wrapper.instance().state.investment).toBe(50)
+    expect(parseFloat(selectedLoan.available.replace(/,/g, ''))).toBeLessThan(parseFloat(currentAvailable.replace(/,/g, '')))
+    
+})
+
+test('Ensure the total possible investments decreases when an investment is made', ()=> {
+    const AppComponent = mount(<App/>)
+    const spy = jest.spyOn(AppComponent.instance(), 'processInvestment');
+    AppComponent.instance().setState({isModalOpen: true})
+    const possibleInvestments = AppComponent.instance().state.possibleInvestments
+    console.log('possble investments', AppComponent.instance().state.possibleInvestments.length)
+
+    const show = true
+    const loan = loans[0]
+    const wrapper = mount(<InvestForm selectedLoan={loan} processInvestment={spy} show={show}/>)
+
+    const investInputField = wrapper.find(FormControl)
+    const investButton = wrapper.find('#investButton').first()
+    investInputField.simulate('change', {target: {
+       name: 'investment',
+       value: 50 
+    }})
+
+    investButton.simulate('click')
+
+    const selectedLoan = wrapper.props().selectedLoan
+    expect(wrapper.instance().state.investment).toBe(50)
+    expect(AppComponent.instance().state.possibleInvestments.length).toBeLessThan(possibleInvestments.length)
+})

@@ -41,6 +41,12 @@ class InvestForm extends Component {
         const investment = event.target.value
         this.setState({investment: investment})
     }
+
+    updateLoan= (event)=> {
+        event.preventDefault()
+        const investment = this.state.investment
+        this.props.processInvestment(this.props.selectedLoan, investment)
+    }
 }
 
 export default InvestForm
