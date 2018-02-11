@@ -23,3 +23,8 @@ test('Ensure SingleLoan component renders correctly with the details of the loan
     expect(element.get(0).props.children[6].props.children).toBe(loans[0].ltv)
     expect(element.get(0).props.children[7].props.children).toBe(loans[0].amount)
 })
+
+test('SingleLoan component renders a snapshot properly', ()=>{
+    const tree = renderer.create(<SingleLoan loan={loans[0]} />).toJSON();
+    expect(tree).toMatchSnapshot(); 
+})

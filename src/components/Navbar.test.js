@@ -13,7 +13,7 @@ test('NavBar renders properly', ()=> {
     expect(element.get(0).props.children).toBe(title) 
 })
 
-test('Loans component renders a snapshot properly', ()=>{
+test('Navbar component renders a snapshot properly', ()=>{
     const tree = renderer.create(<NavBar title={title}/>).toJSON();
     expect(tree).toMatchSnapshot(); 
 })

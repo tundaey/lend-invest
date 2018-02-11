@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Loans from './components/Loans'
 import {loans} from './current-loans.json'
+import NavBar from './components/Navbar'
 
 class App extends Component {
   constructor(){
@@ -24,6 +25,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <NavBar title={this.state.title}/>
         <div className="container">
           <div className="row">
             <div className="col-md-8">

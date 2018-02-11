@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Loans component renders a snapshot properly 1`] = `
+exports[`Navbar component renders a snapshot properly 1`] = `
 <nav
   className="navbar navbar-inverse"
 >

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleLoan component renders a snapshot properly 1`] = `
+<tr
+  className=""
+  onClick={[Function]}
+>
+  <td>
+    1
+  </td>
+  <td>
+    Voluptate et sed tempora qui quisquam.
+  </td>
+  <td>
+    A
+  </td>
+  <td>
+    11,959
+  </td>
+  <td>
+    8.60
+  </td>
+  <td>
+    864000
+  </td>
+  <td>
+    48.80
+  </td>
+  <td>
+    85,754
+  </td>
+</tr>
+`;
