@@ -67,19 +67,24 @@ class App extends Component {
   }
 
   processInvestment = (loan, investment)=>{
-    const available = parseFloat(loan.available.replace(/,/g, ''));
-    const newAvailableAmount  = available - investment
-    loan['available']= newAvailableAmount.toLocaleString('en')
-    const newLoans = this.state.loans.map((l)=> {
-      if(l.id === loan.id){
-        loan['invested'] = true
-        return loan
-      }
-      return l
-    })
-    
-    this.updatePossibleInvestments(loan)
-    this.setState({isModalOpen: false, loans: newLoans})
+    if(investment === ""){
+      this.setState({isModalOpen: false})
+    }
+    else {
+      const available = parseFloat(loan.available.replace(/,/g, ''));
+      const newAvailableAmount  = available - investment
+      loan['available']= newAvailableAmount.toLocaleString('en')
+      const newLoans = this.state.loans.map((l)=> {
+        if(l.id === loan.id){
+          loan['invested'] = true
+          return loan
+        }
+        return l
+      })
+      
+      this.updatePossibleInvestments(loan)
+      this.setState({isModalOpen: false, loans: newLoans})
+    }
   }
 
   updatePossibleInvestments = (loan)=>{
