@@ -13,3 +13,8 @@ test('Loans component renders correctly with list of loans', ()=> {
     expect(element.length).toBe(3)
     expect(element.get(0).props.loan.id).toBe(firstLoanId)
 })
+
+test('Loans component renders a snapshot properly', ()=>{
+    const tree = renderer.create(<Loans loans={loans}/>).toJSON();
+    expect(tree).toMatchSnapshot(); 
+})
