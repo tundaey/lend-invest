@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table} from 'react-bootstrap'
 import SingleLoan from './SingleLoan'
-import InvestForm from './InvestForm'
 
 const Loans = (props)=> (
     <div>
