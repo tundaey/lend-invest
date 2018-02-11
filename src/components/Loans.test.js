@@ -6,7 +6,7 @@ import {loans} from '../current-loans.json'
 import Loans from './Loans'
 import SingleLoan from './SingleLoan'
 
-test('Loans component renders correctly with list of loans', ()=> {
+test('User should be able to see all current loans', ()=> {
     const wrapper = shallow(<Loans loans={loans}/>)
     const element = wrapper.find(SingleLoan)
     const firstLoanId = loans[0].id

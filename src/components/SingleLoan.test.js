@@ -13,7 +13,7 @@ test('Ensure SingleLoan component renders correctly with the details of the loan
     const wrapper = shallow(<SingleLoan onClick={onClick} loan={loans[0]}/>)
     const element = wrapper.find('tr')
     expect(element.length).toBe(1)
-    expect(element.get(0).props.children.length).toBe(8)
+    expect(element.get(0).props.children.length).toBe(9)
     expect(element.get(0).props.children[0].props.children).toBe(loans[0].id)
     expect(element.get(0).props.children[1].props.children).toBe(loans[0].title)
     expect(element.get(0).props.children[2].props.children).toBe(loans[0].tranche)
@@ -24,19 +24,20 @@ test('Ensure SingleLoan component renders correctly with the details of the loan
     expect(element.get(0).props.children[7].props.children).toBe(loans[0].amount)
 })
 
-test('Ensure the modal is opened when a single loan is clicked', ()=> {
-    const loansComponent = mount(<App/>)
-    const spy = jest.spyOn(loansComponent.instance(), 'openModal');
+test('When User clicks on a loan, the form should appear.', ()=> {
+    const AppComponent = mount(<App/>)
+    const spy = jest.spyOn(AppComponent.instance(), 'openModal');
 
     const wrapper = mount(<SingleLoan onClick={spy} key={loans[0].id}  loan={loans[0]}/>)
     wrapper.find('tr').simulate('click')
     const loan = loans[0]
 
-    expect(loansComponent.instance().state.isModalOpen).toBe(true)
-    expect(loansComponent.instance().state.selectedLoan).toBe(loan)
+    expect(AppComponent.instance().state.isModalOpen).toBe(true)
+    expect(AppComponent.instance().state.selectedLoan).toBe(loan)
 })
 
 test('SingleLoan component renders a snapshot properly', ()=>{
-    const tree = renderer.create(<SingleLoan loan={loans[0]} />).toJSON();
+    const spy = jest.fn()
+    const tree = renderer.create(<SingleLoan onClick={spy} loan={loans[0]} />).toJSON();
     expect(tree).toMatchSnapshot(); 
 })

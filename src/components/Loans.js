@@ -15,6 +15,7 @@ const Loans = (props)=> (
                     <th>Term remaining</th>
                     <th>Ltv</th>
                     <th>Amount</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>

@@ -29,5 +29,12 @@ exports[`SingleLoan component renders a snapshot properly 1`] = `
   <td>
     85,754
   </td>
+  <td>
+    <span
+      className="badge"
+    >
+      Eligible
+    </span>
+  </td>
 </tr>
 `;

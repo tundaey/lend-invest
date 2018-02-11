@@ -1,4 +1,5 @@
 import React from 'react';
+import {Badge} from 'react-bootstrap'
 
 const SingleLoan = (props) => (
     <tr className={props.loan.invested? 'invested-row ': ''}
@@ -11,6 +12,7 @@ const SingleLoan = (props) => (
         <td>{props.loan.term_remaining}</td>
         <td>{props.loan.ltv}</td>
         <td>{props.loan.amount}</td>
+        <td><Badge bsClass={props.loan.invested? 'invested-badge': 'badge'}>{props.loan.invested? 'Invested': 'Eligible'}</Badge></td>
     </tr>
 )
 

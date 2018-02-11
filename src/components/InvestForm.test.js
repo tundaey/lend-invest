@@ -4,8 +4,11 @@ import renderer from 'react-test-renderer'
 import {loans} from '../current-loans.json'
 
 import InvestForm from './InvestForm'
-import {Modal, Button, FormControl} from 'react-bootstrap'
+import SingleLoan from './SingleLoan'
+import {Modal, Button, FormControl, Badge} from 'react-bootstrap'
 import App from '../App'
+
+
 
 test('renders the invest form in the modal properly', ()=> {
     const show = true
@@ -19,7 +22,7 @@ test('renders the invest form in the modal properly', ()=> {
 
 })
 
-test('Ensure the modal is closed when the cancel button is called', ()=> {
+test('User can close popup when the cancel button is called', ()=> {
     const AppComponent = mount(<App/>)
     const spy = jest.spyOn(AppComponent.instance(), 'closeModal');
 
@@ -32,7 +35,7 @@ test('Ensure the modal is closed when the cancel button is called', ()=> {
     expect(AppComponent.instance().state.isModalOpen).toBe(false)
 })
 
-test('Ensure the invest input field updates the state when the data is entered into it', ()=> {
+test('User can put numeric value (invested amount) in the input', ()=> {
     const show = true
     const wrapper = shallow(<InvestForm show={show}/>)
     const investInputField = wrapper.find(FormControl)
@@ -40,10 +43,13 @@ test('Ensure the invest input field updates the state when the data is entered i
        name: 'investment',
        value: 50 
     }})
+    
+    expect(typeof wrapper.instance().state.investment).toBe("number")
     expect(wrapper.instance().state.investment).toBe(50)
+
 })
 
-test('Ensure the modal is closed when the invest button is called', ()=> {
+test('User can click button labelled “Invest” which closes pop up', ()=> {
     const AppComponent = mount(<App/>)
     const spy = jest.spyOn(AppComponent.instance(), 'processInvestment');
     AppComponent.instance().setState({isModalOpen: true})
@@ -58,7 +64,7 @@ test('Ensure the modal is closed when the invest button is called', ()=> {
     expect(AppComponent.instance().state.isModalOpen).toBe(false)
 })
 
-test('Ensure the available amount for the loan selected decreases by the right amount when invest button is clicked', ()=> {
+test('When the "Invest" button is clicked, the available amount, for the loan User invested into, should decrease', ()=> {
     const AppComponent = mount(<App/>)
     const spy = jest.spyOn(AppComponent.instance(), 'processInvestment');
     AppComponent.instance().setState({isModalOpen: true})
@@ -83,12 +89,11 @@ test('Ensure the available amount for the loan selected decreases by the right a
     
 })
 
-test('Ensure the total possible investments decreases when an investment is made', ()=> {
-    const AppComponent = mount(<App/>)
+test('When the "Invest" button is clicked, the total available number of investments should also adjust accordingly', ()=> {
+    const AppComponent = shallow(<App/>)
     const spy = jest.spyOn(AppComponent.instance(), 'processInvestment');
     AppComponent.instance().setState({isModalOpen: true})
-    const possibleInvestments = AppComponent.instance().state.possibleInvestments
-    console.log('possble investments', AppComponent.instance().state.possibleInvestments.length)
+    const possibleInvestments = AppComponent.instance().state.possibleInvestments.length
 
     const show = true
     const loan = loans[0]
@@ -105,5 +110,19 @@ test('Ensure the total possible investments decreases when an investment is made
 
     const selectedLoan = wrapper.props().selectedLoan
     expect(wrapper.instance().state.investment).toBe(50)
-    expect(AppComponent.instance().state.possibleInvestments.length).toBeLessThan(possibleInvestments.length)
+    expect(AppComponent.instance().state.possibleInvestments.length).toBeLessThan(possibleInvestments)
+})
+
+
+test('Investform component renders a snapshot properly', ()=>{
+    const spy = jest.fn()
+    const closeModal = jest.fn()
+    const show = true
+    const loan = loans[0]
+    const tree = renderer.create(
+        <InvestForm
+        processInvestment={spy} 
+        closeModal={closeModal} 
+        selectedLoan={loan}/>).toJSON();
+    expect(tree).toMatchSnapshot(); 
 })
