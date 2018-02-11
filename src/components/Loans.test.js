@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import renderer from 'react-test-renderer'
 
-import {loans} from '../current-loan.json'
+import {loans} from '../current-loans.json'
 import Loans from './Loans'
 import SingleLoan from './SingleLoan'
 
